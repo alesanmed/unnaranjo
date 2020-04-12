@@ -1,8 +1,23 @@
 <template>
   <div>
+    <Navbar />
+    <Header />
     <nuxt />
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+const Header = () => import('../components/Header.vue')
+const Navbar = () => import('../components/Navbar.vue');
+
+export default Vue.extend({
+  components: {
+    Header,
+    Navbar
+  }
+})
+</script>
 
 <style>
 html {
