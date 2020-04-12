@@ -1,9 +1,18 @@
 <template>
-  <div class="flex flex-row uppercase text-lg font-medium bg-gray-300">
-    <nuxt-link to="/"><div class="p-4">Inicio</div></nuxt-link>
+  <div class="flex flex-row uppercase text-lg font-medium bg-gray-400">
+    <div class="p-4">
+      <img class="h-8" src="~assets/img/header/logo_512.png" />
+    </div>
+    <nuxt-link to="/">
+      <div class="p-4">Inicio</div>
+    </nuxt-link>
     <div class="p-4">Mini-Consejos</div>
-    <div class="p-4">Cursos</div>
-    <div class="p-4">Sobre Nosotros</div>
+    <nuxt-link to="posts">
+      <div class="p-4">Cursos</div>
+    </nuxt-link>
+    <nuxt-link to="about">
+      <div class="p-4">Sobre Nosotros</div>
+    </nuxt-link>
   </div>
 </template>
 

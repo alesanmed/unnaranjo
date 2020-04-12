@@ -8,8 +8,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-const Header = () => import('../components/Header.vue')
-const Navbar = () => import('../components/Navbar.vue');
+const Header = () => import('~/components/Header.vue')
+const Navbar = () => import('~/components/Navbar.vue')
 
 export default Vue.extend({
   components: {
