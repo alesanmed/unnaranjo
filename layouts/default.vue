@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Navbar />
-    <Header />
+    <!-- <Navbar />
+    <Header /> -->
     <nuxt />
   </div>
 </template>

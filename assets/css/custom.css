@@ -1,0 +1,18 @@
+@font-face {
+  font-family: Oswald;
+  src: url('../fonts/Oswald/Oswald.ttf')
+}
+
+.font-oswald {
+  font-family: Oswald, Arial, Helvetica, sans-serif;
+}
+
+.max-w-f-324 {
+  max-width: 324px;
+}
+
+@responsive {
+  .w-max-3\/10 {
+    max-width: 30%;
+  }
+}

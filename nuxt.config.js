@@ -47,7 +47,12 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    host: 'unnaranjo.com',
+    https: true,
+    port: 443,
+    prefix: '/wp-json/wp/v2/'
+  },
   /*
    ** Build configuration
    */
@@ -55,6 +60,6 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    // extend(config, ctx) {}
   }
 }
