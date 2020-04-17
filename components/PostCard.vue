@@ -1,11 +1,14 @@
 <template functional>
-  <div class="flex flex-col px-5 my-8 md:w-max-3/10 postcard-container">
-    <img :src="props.img" class="mx-auto max-w-f-324" />
-    <div class="text-3xl font-oswald truncate font-bold">
-      <nuxt-link :to="props.link">{{ props.title }}</nuxt-link>
+  <nuxt-link
+    :to="props.link"
+    class="flex flex-col px-6 my-8 sm:w-1/3 sm:flex-same-width"
+  >
+    <img :src="props.img" class="mx-auto" />
+    <div class="text-3xl font-oswald md:truncate font-bold">
+      {{ props.title }}
     </div>
     <div class="">
       {{ props.date }}
     </div>
-  </div>
+  </nuxt-link>
 </template>

@@ -1,5 +1,7 @@
 <template>
-  <div class="flex flex-row uppercase text-lg font-medium bg-gray-400">
+  <div
+    class="flex flex-row uppercase flex-wrap sm:flex-no-wrap text-lg font-medium h-16 bg-gray-400"
+  >
     <div class="p-4">
       <img class="h-8" src="~assets/img/header/logo_512.png" />
     </div>

@@ -1,6 +1,9 @@
 <template>
   <div class="bg-gray-200 py-2">
-    <img class="h-24" src="~assets/img/header/logo_subtitle.png" />
+    <img
+      class="w-2/3 sm:w-1/3 mx-auto"
+      src="~assets/img/header/logo_subtitle.png"
+    />
   </div>
 </template>
 

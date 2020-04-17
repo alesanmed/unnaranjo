@@ -12,7 +12,8 @@
 }
 
 @responsive {
-  .w-max-3\/10 {
-    max-width: 30%;
+  .flex-same-width {
+    flex-basis: 0;
+    flex-grow: 1;
   }
 }

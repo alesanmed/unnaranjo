@@ -13,9 +13,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import PostCard from '../components/PostCard.vue'
+
+const PostCard = () => import('../components/PostCard.vue')
 
 export default Vue.extend({
+  layout: 'index',
   components: {
     PostCard
   },
@@ -27,7 +29,7 @@ export default Vue.extend({
       .$get('posts', {
         params: {
           _fields: 'id,title,slug,excerpt,featured_media,feat_img,date',
-          per_page: '9'
+          per_page: '6'
         }
       })
       .then((res) => {

@@ -1,19 +1,19 @@
 <template>
   <div>
     <Navbar />
-    <Header />
+    <SubscribeForm />
     <nuxt />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-const Header = () => import('~/components/Header.vue')
+const SubscribeForm = () => import('~/components/SubscribeForm.vue')
 const Navbar = () => import('~/components/Navbar.vue')
 
 export default Vue.extend({
   components: {
-    Header,
+    SubscribeForm,
     Navbar
   }
 })
