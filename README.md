@@ -1,6 +1,6 @@
-# unnaranjo
+# unnaranjo.js
 
-> Front page for the UnNaranjo headless wordress
+> My classy Nuxt.js project
 
 ## Build Setup
 

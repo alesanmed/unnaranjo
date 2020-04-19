@@ -2,14 +2,13 @@
   <div class="bg-gray-200 py-2">
     <img
       class="w-2/3 sm:w-1/3 mx-auto"
-      src="~assets/img/header/logo_subtitle.png"
+      src="~/assets/img/header/logo_subtitle.png"
     />
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
+<script>
+export default {
   name: 'Header'
-})
+}
 </script>
