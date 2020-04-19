@@ -6,15 +6,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script lang="js">
 const SubscribeForm = () => import('~/components/SubscribeForm.vue')
 const Navbar = () => import('~/components/Navbar.vue')
 
-export default Vue.extend({
+export default {
   components: {
     SubscribeForm,
     Navbar
   }
-})
+}
 </script>

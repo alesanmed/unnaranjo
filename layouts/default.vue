@@ -6,15 +6,14 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script lang="js">
 const Header = () => import('~/components/Header.vue')
 const Navbar = () => import('~/components/Navbar.vue')
 
-export default Vue.extend({
+export default {
   components: {
     Header,
     Navbar
   }
-})
+}
 </script>

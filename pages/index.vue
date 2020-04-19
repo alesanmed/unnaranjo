@@ -11,12 +11,10 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
-
+<script>
 const PostCard = () => import('../components/PostCard.vue')
 
-export default Vue.extend({
+export default {
   layout: 'index',
   components: {
     PostCard
@@ -35,7 +33,11 @@ export default Vue.extend({
       .then((res) => {
         this.posts = res
       })
-      .catch((err) => {})
+      .catch((err) => {
+        // FIXME: Show some sort of error screen
+        // eslint-disable-next-line no-console
+        console.log(err)
+      })
   }
-})
+}
 </script>
