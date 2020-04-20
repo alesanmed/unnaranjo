@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-200 lg:pb-2">
+  <div class="bg-gray-200">
     <div class="hidden lg:block">
       <img src="~/assets/img/subscription/landscape.jpg" />
     </div>
@@ -18,7 +18,7 @@
         <form
           id="subscribe"
           class="flex-grow flex flex-col lg:flex-row"
-          @submit.stop.prevent="submitForm"
+          @submit.prevent="submitForm"
         >
           <div class="input-group lg:px-8 lg:flex-grow">
             <ValidationProvider
@@ -81,9 +81,7 @@
                   class="mr-2 leading-tight"
                   type="checkbox"
                 />
-                <span class="text-sm">
-                  Recibir emails comerciales *
-                </span>
+                <span class="text-sm">Recibir emails comerciales *</span>
               </label>
               <div
                 v-if="errors"
@@ -101,7 +99,7 @@
           </div>
           <div
             v-if="subscribeSuccess"
-            class="hidden lg:block text-green-600 font-semibold text-sm lg:px-8"
+            class="block lg:hidden text-green-600 font-semibold text-sm lg:px-8"
           >
             Enhorabuena! Ahora, comprueba tu email ;)
           </div>
@@ -160,40 +158,45 @@ export default {
   },
   methods: {
     async submitForm() {
-      const success = await this.$refs.form.validate()
-      if (!success) {
-        return
-      }
+      try {
+        this.$nuxt.$loading.start()
 
-      this.submitError = false
-      this.subscribeSuccess = false
+        const success = await this.$refs.form.validate()
+        if (!success) {
+          return
+        }
 
-      const payload = {
-        email: this.email,
-        merge: this.merge,
-        marketing: this.marketing
-      }
+        this.submitError = false
+        this.subscribeSuccess = false
 
-      const res = await this.$axios.request({
-        url: SUBSCRIBE_URL,
-        method: 'post',
-        data: payload
-      })
+        const payload = {
+          email: this.email,
+          merge: this.merge,
+          marketing: this.marketing
+        }
 
-      if (res.status !== 200) {
-        this.submitError = true
-      } else {
+        await this.$axios.request({
+          url: SUBSCRIBE_URL,
+          method: 'post',
+          data: payload
+        })
+
         this.subscribeSuccess = true
+
+        // Resetting Values
+        this.merge.FNAME = this.email = ''
+        this.marketing['5f7ac9c171'] = false
+
+        // Wait until the models are updated in the UI
+        this.$nextTick(() => {
+          this.$refs.form.reset()
+          this.$nuxt.$loading.finish()
+        })
+      } catch (err) {
+        this.$nuxt.$loading.finish()
+        this.submitError = true
+        return false
       }
-
-      // Resetting Values
-      this.merge.FNAME = this.email = ''
-      this.marketing['5f7ac9c171'] = false
-
-      // Wait until the models are updated in the UI
-      this.$nextTick(() => {
-        this.$refs.form.reset()
-      })
     }
   }
 }

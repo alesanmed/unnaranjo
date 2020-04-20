@@ -1,1 +1,1 @@
-export const SUBSCRIBE_URL = '/wp-json/gmt-mailchimp/v1/subscribi'
+export const SUBSCRIBE_URL = '/gmt-mailchimp/v1/subscribe'
