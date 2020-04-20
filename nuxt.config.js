@@ -27,7 +27,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/vee-validate.js'],
+  plugins: [],
   /*
    ** Nuxt.js dev-modules
    */
@@ -54,7 +54,7 @@ module.exports = {
     host: 'unnaranjo.com',
     https: true,
     port: 443,
-    prefix: '/wp-json/wp/v2/'
+    prefix: '/wp-json'
   },
   /*
    ** Build configuration

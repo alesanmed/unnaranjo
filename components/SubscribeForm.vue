@@ -10,13 +10,15 @@
         No te pierdas NADA y mejora tus fotos desde
         <span class="text-orange-500">hoy</span>
       </div>
-      <ValidationObserver v-slot="{ invalid }" ref="form" class="w-full">
+      <ValidationObserver
+        v-slot="{ invalid }"
+        ref="form"
+        class="w-full flex flex-col"
+      >
         <form
           id="subscribe"
-          action="/wp-json/gmt-mailchimp/v1/subscribi"
-          method="get"
           class="flex-grow flex flex-col lg:flex-row"
-          @submit.prevent="submitForm"
+          @submit.stop.prevent="submitForm"
         >
           <div class="input-group lg:px-8 lg:flex-grow">
             <ValidationProvider
@@ -91,6 +93,18 @@
               </div>
             </ValidationProvider>
           </div>
+          <div
+            v-if="submitError"
+            class="block lg:hidden text-red-600 font-semibold text-sm lg:px-8"
+          >
+            No hemos podido suscribirte en este momento
+          </div>
+          <div
+            v-if="subscribeSuccess"
+            class="hidden lg:block text-green-600 font-semibold text-sm lg:px-8"
+          >
+            Enhorabuena! Ahora, comprueba tu email ;)
+          </div>
           <div class="text-center">
             <button
               class="bg-orange-500 text-lg text-white font-semibold my-2 px-6 py-2 rounded"
@@ -102,6 +116,18 @@
             </button>
           </div>
         </form>
+        <div
+          v-if="submitError"
+          class="hidden lg:block text-red-600 font-semibold text-sm lg:px-8"
+        >
+          No hemos podido suscribirte en este momento
+        </div>
+        <div
+          v-if="subscribeSuccess"
+          class="hidden lg:block text-green-600 font-semibold text-sm lg:px-8"
+        >
+          Enhorabuena! Ahora, comprueba tu email ;)
+        </div>
       </ValidationObserver>
     </div>
   </div>
@@ -109,6 +135,7 @@
 
 <script>
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
+import { SUBSCRIBE_URL } from '../config'
 import '../validators/required'
 import '../validators/email'
 
@@ -118,30 +145,54 @@ export default {
     ValidationProvider,
     ValidationObserver
   },
-  data: () => ({
-    email: '',
-    merge: {
-      FNAME: ''
-    },
-    marketing: {
-      '5f7ac9c171': false
+  data() {
+    return {
+      email: '',
+      merge: {
+        FNAME: ''
+      },
+      marketing: {
+        '5f7ac9c171': false
+      },
+      submitError: false,
+      subscribeSuccess: false
     }
-  }),
+  },
   methods: {
-    submitForm() {
-      this.$refs.form.validate().then((success) => {
-        if (!success) {
-          return
-        }
+    async submitForm() {
+      const success = await this.$refs.form.validate()
+      if (!success) {
+        return
+      }
 
-        // Resetting Values
-        this.merge.FNAME = this.email = ''
-        this.marketing['5f7ac9c171'] = false
+      this.submitError = false
+      this.subscribeSuccess = false
 
-        // Wait until the models are updated in the UI
-        this.$nextTick(() => {
-          this.$refs.form.reset()
-        })
+      const payload = {
+        email: this.email,
+        merge: this.merge,
+        marketing: this.marketing
+      }
+
+      const res = await this.$axios.request({
+        url: SUBSCRIBE_URL,
+        method: 'post',
+        data: payload
+      })
+
+      if (res.status !== 200) {
+        this.submitError = true
+      } else {
+        this.subscribeSuccess = true
+      }
+
+      // Resetting Values
+      this.merge.FNAME = this.email = ''
+      this.marketing['5f7ac9c171'] = false
+
+      // Wait until the models are updated in the UI
+      this.$nextTick(() => {
+        this.$refs.form.reset()
       })
     }
   }

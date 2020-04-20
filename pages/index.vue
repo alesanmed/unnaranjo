@@ -24,7 +24,7 @@ export default {
   }),
   mounted() {
     this.$axios
-      .$get('posts', {
+      .$get('/wp/v2/posts', {
         params: {
           _fields: 'id,title,slug,excerpt,featured_media,feat_img,date',
           per_page: '6'
