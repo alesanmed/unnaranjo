@@ -12,7 +12,7 @@
         />
         <img
           data-src="~/assets/img/subscription/landscape.jpg"
-          class="lazyload"
+          class="lazyload w-full"
         />
       </picture>
     </div>
