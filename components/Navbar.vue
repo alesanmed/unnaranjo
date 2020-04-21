@@ -1,7 +1,17 @@
 <template>
   <div class="flex static md:absolute top-0 w-full">
     <div class="px-4 py-3">
-      <img class="h-8" src="~/assets/img/header/logo_512.png" />
+      <picture>
+        <source
+          data-srcset="~/assets/img/header/logo_512.png?webp"
+          type="image/webp"
+        />
+        <source
+          data-srcset="~/assets/img/header/logo_512.png"
+          type="image/png"
+        />
+        <img class="h-8 lazyload" data-src="~/assets/img/header/logo_512.png" />
+      </picture>
     </div>
     <div
       class="flex uppercase flex-wrap flex-grow justify-end sm:flex-no-wrap text-lg text-gray-300 h-16 bg-transparent"

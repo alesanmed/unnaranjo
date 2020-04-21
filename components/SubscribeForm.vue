@@ -1,7 +1,20 @@
 <template>
   <div class="bg-gray-200">
     <div class="hidden lg:block">
-      <img src="~/assets/img/subscription/landscape.jpg" />
+      <picture>
+        <source
+          data-srcset="~/assets/img/subscription/landscape.jpg?webp"
+          type="image/webp"
+        />
+        <source
+          data-srcset="~/assets/img/subscription/landscape.jpg"
+          type="image/jpg"
+        />
+        <img
+          data-src="~/assets/img/subscription/landscape.jpg"
+          class="lazyload"
+        />
+      </picture>
     </div>
     <div
       class="flex flex-col lg:flex-row bg-blue-300 py-2 lg:py-5 px-8 mx-auto"

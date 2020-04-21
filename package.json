@@ -19,24 +19,29 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "cross-env": "^7.0.2",
     "fastify": "^2.13.1",
+    "lazysizes": "^5.2.0",
     "nuxt": "^2.0.0",
     "vee-validate": "^3.3.0"
   },
   "devDependencies": {
+    "@aceforth/nuxt-optimized-images": "^1.0.0",
     "@nuxtjs/eslint-config": "^2.0.0",
     "@nuxtjs/eslint-module": "^1.0.0",
     "@nuxtjs/tailwindcss": "^1.0.0",
     "@vue/test-utils": "^1.0.0-beta.27",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^25.3.0",
+    "babel-jest": "^25.4.0",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.1.2",
-    "jest": "^25.3.0",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^8.0.0",
+    "jest": "^25.4.0",
     "nodemon": "^2.0.3",
     "npm-check": "^5.9.2",
     "prettier": "^2.0.4",
-    "vue-jest": "^4.0.0-0"
+    "vue-jest": "^4.0.0-0",
+    "webp-loader": "^0.6.0"
   }
 }
