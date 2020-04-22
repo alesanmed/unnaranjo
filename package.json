@@ -21,7 +21,8 @@
     "fastify": "^2.13.1",
     "lazysizes": "^5.2.0",
     "nuxt": "^2.0.0",
-    "vee-validate": "^3.3.0"
+    "vee-validate": "^3.3.0",
+    "vue-infinite-loading": "^2.4.5"
   },
   "devDependencies": {
     "@aceforth/nuxt-optimized-images": "^1.0.0",

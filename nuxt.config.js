@@ -30,7 +30,10 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/lazysizes.js'],
+  plugins: [
+    '~/plugins/lazysizes.js',
+    { src: '~/plugins/infiniteLoading.js', ssr: false }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
