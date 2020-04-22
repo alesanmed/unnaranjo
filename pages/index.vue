@@ -3,16 +3,20 @@
     <PostCard
       v-for="post in posts"
       :key="post.id"
-      :img="post.feat_img.td_324_160"
+      :img="post.feat_img.medium_large"
       :link="post.slug"
       :title="post.title.rendered"
-      :date="post.date"
+      :day="post.day"
+      :month="post.month"
+      :year="post.year"
+      :author="'Ale Sánchez'"
     />
   </div>
 </template>
 
 <script>
-const PostCard = () => import('../components/PostCard.vue')
+import MONTHS from '../utils/months'
+const PostCard = () => import('../components/PostLean.vue')
 
 export default {
   layout: 'index',
@@ -22,22 +26,27 @@ export default {
   data: () => ({
     posts: []
   }),
-  mounted() {
-    this.$axios
-      .$get('/wp/v2/posts', {
+  async mounted() {
+    try {
+      const res = await this.$axios.$get('/wp/v2/posts', {
         params: {
           _fields: 'id,title,slug,excerpt,featured_media,feat_img,date',
           per_page: '6'
         }
       })
-      .then((res) => {
-        this.posts = res
+      this.posts = res.map((post) => {
+        const date = new Date(post.date)
+        post.day = date.getDay()
+        post.month = MONTHS[date.getMonth()]
+        post.year = date.getFullYear()
+
+        return post
       })
-      .catch((err) => {
-        // FIXME: Show some sort of error screen
-        // eslint-disable-next-line no-console
-        console.log(err)
-      })
+    } catch (err) {
+      // FIXME: Show some sort of error screen
+      // eslint-disable-next-line no-console
+      console.log(err)
+    }
   }
 }
 </script>

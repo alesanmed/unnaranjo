@@ -20,6 +20,7 @@ module.exports = {
   // add your custom rules here
   rules: {
     'nuxt/no-cjs-in-config': 'off',
-    "comma-dangle": ["error", "never"]
+    'comma-dangle': ['error', 'never'],
+    'space-before-function-paren': ['error', 'never'],
   }
 }
