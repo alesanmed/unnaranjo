@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar />
+    <Navbar :is-abolute="false" />
     <Header />
     <nuxt />
   </div>

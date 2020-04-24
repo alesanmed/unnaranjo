@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-200">
+  <div class="bg-brand-gray">
     <div class="hidden lg:block">
       <picture>
         <source
@@ -17,11 +17,11 @@
       </picture>
     </div>
     <div
-      class="flex flex-col lg:flex-row bg-blue-300 py-2 lg:py-5 px-8 mx-auto"
+      class="flex flex-col lg:flex-row bg-brand-gray py-2 lg:py-5 px-8 mx-auto shadow-xl"
     >
       <div class="font-oswald lg:max-w-xs text-2xl text-white mx-6">
         No te pierdas NADA y mejora tus fotos desde
-        <span class="text-orange-500">hoy</span>
+        <span class="text-brand-orange">hoy</span>
       </div>
       <ValidationObserver
         v-slot="{ invalid }"
@@ -94,7 +94,9 @@
                   class="mr-2 leading-tight"
                   type="checkbox"
                 />
-                <span class="text-sm">Recibir emails comerciales *</span>
+                <span class="text-sm text-white">
+                  Recibir emails comerciales *
+                </span>
               </label>
               <div
                 v-if="errors"

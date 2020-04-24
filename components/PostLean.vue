@@ -35,16 +35,17 @@
       <div class="data mt-auto text-white transition-transform duration-300">
         <div class="p-4">
           <!-- <span class="text-xs">{{ props.author }}</span> -->
-          <h1 class="mt-1 text-lg">
-            <nuxt-link :to="props.link" class="truncate">
+
+          <nuxt-link :to="`/posts/${props.link}`">
+            <h1 class="mt-1 font-oswald text-3xl">
               {{ props.title }}
-            </nuxt-link>
-          </h1>
+            </h1>
+          </nuxt-link>
           <p class="pt-1 h-20">
             {{ props.excerpt }}
           </p>
-          <a
-            href="#"
+          <nuxt-link
+            :to="`/posts/${props.link}`"
             class="read-more h-4 flex w-full justify-center text-xs text-white"
           >
             <div>
@@ -53,7 +54,7 @@
             <div
               class="read-more-arrow transition duration-300 opacity-0"
             ></div>
-          </a>
+          </nuxt-link>
         </div>
       </div>
     </div>

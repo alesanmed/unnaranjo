@@ -1,5 +1,8 @@
 <template>
-  <div class="flex static md:absolute top-0 w-full">
+  <div
+    class="flex static w-full bg-brand-gray"
+    :class="{ isAbsolute: 'md:absolute top-0' }"
+  >
     <div class="px-4 py-3">
       <picture>
         <source
@@ -32,6 +35,12 @@
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  props: {
+    isAbsolute: {
+      type: Boolean,
+      default: true
+    }
+  }
 }
 </script>

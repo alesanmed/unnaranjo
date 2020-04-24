@@ -1,3 +1,7 @@
+html {
+  background-color: #303c3c;
+}
+
 @font-face {
   font-family: Oswald;
   src: url('../fonts/Oswald/Oswald.ttf');
@@ -10,6 +14,11 @@
 
 .max-w-f-324 {
   max-width: 324px;
+}
+
+.infinite-loading-container {
+  width: 100%;
+  @apply mb-4;
 }
 
 @responsive {

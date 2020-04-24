@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-200 py-2">
+  <div class="bg-brand-gray shadow-lg py-2">
     <picture>
       <source
         data-srcset="~/assets/img/header/logo_subtitle.png?webp"
