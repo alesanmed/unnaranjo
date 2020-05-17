@@ -50,7 +50,7 @@ module.exports = {
 
   optimizedImages: {
     optimizeImages: true,
-    optimizeImagesInDev: true,
+    optimizeImagesInDev: false,
     inlineImageLimit: -1,
     handleImages: ['jpeg', 'jpg', 'png', 'svg', 'webp', 'gif'],
     mozjpeg: {

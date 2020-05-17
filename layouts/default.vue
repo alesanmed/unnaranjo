@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main">
     <Navbar :is-abolute="false" />
     <Header />
     <nuxt />

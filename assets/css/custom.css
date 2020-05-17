@@ -2,6 +2,10 @@ html {
   background-color: #303c3c;
 }
 
+.main {
+  background-color: #01061f;
+}
+
 @font-face {
   font-family: Oswald;
   src: url('../fonts/Oswald/Oswald.ttf');

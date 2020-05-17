@@ -1,15 +1,18 @@
 <template>
-  <div class="flex flex-wrap justify-evenly">
+  <div class="max-w-6xl m-auto flex flex-wrap justify-evenly">
     <PostCard
-      v-for="post in posts"
+      v-for="(post, index) in posts"
       :key="post.id"
-      :img="post.feat_img.medium_large"
+      :number="index"
+      :img="post.feature_image"
       :link="post.slug"
-      :title="post.title.rendered"
+      :title="post.title"
       :excerpt="post.excerpt"
+      :author="post.authors[0]"
       :day="post.day"
       :month="post.month"
       :year="post.year"
+      :reading-time="post.reading_time"
     />
     <client-only>
       <infinite-loading spinner="spiral" @infinite="infiniteScroll" />
@@ -18,7 +21,7 @@
 </template>
 
 <script>
-import MONTHS from '../utils/months'
+import { getPosts } from '../content/posts'
 const PostCard = () => import('./PostLean.vue')
 
 export default {
@@ -32,9 +35,9 @@ export default {
     page: 1
   }),
   async mounted() {
-    const res = await this.getOnePostsPage()
+    const firstPage = await this.getOnePostsPage()
 
-    this.addPosts(res)
+    this.addPosts(firstPage)
   },
   methods: {
     async infiniteScroll($state) {
@@ -50,57 +53,16 @@ export default {
       }
     },
 
-    addPosts(rawPosts) {
-      rawPosts.forEach((post) => {
-        const date = new Date(post.date)
-        post.day = date.getDay()
-        post.month = MONTHS[date.getMonth()]
-        post.year = date.getFullYear()
-
-        post.excerpt = post.excerpt.rendered.replace(/<([^>]+)>/gi, '')
-
-        if (post.excerpt.length > 140) {
-          let sliced = post.excerpt.slice(0, 137)
-          const re = new RegExp(/[^\w]/, 'g')
-
-          if (!re.test(post.excerpt[137])) {
-            let index = re.lastIndex
-
-            do {
-              index = re.lastIndex
-            } while (re.test(sliced))
-
-            if (index > 0) {
-              sliced = sliced.slice(0, index - 1)
-            }
-          }
-
-          post.excerpt = `${sliced}...`
-        }
-
-        this.$data.posts.push(post)
-      })
+    addPosts(newPosts) {
+      this.$data.posts = this.$data.posts.concat(newPosts)
     },
 
     async getOnePostsPage() {
-      try {
-        const res = await this.$axios.$get('/wp/v2/posts', {
-          params: {
-            _fields: 'id,title,slug,excerpt,featured_media,feat_img,date',
-            per_page: this.perPage,
-            page: this.page
-          }
-        })
+      const res = await getPosts(this.page)
 
-        this.$data.page += 1
+      this.$data.page += 1
 
-        return res
-      } catch (err) {
-        // FIXME: Show some sort of error screen
-        // eslint-disable-next-line no-console
-        console.log(err)
-        return []
-      }
+      return res
     }
   }
 }
